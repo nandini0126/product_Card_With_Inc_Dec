@@ -4,10 +4,117 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        .container{
+            width: 300px;
+            background-color: #5fc1d4;
+            margin: 0 auto;
+            margin-top: 150px;
+            padding: 20px;
+            color: white;
+            border-radius: 20px;
+        }
+        .img{
+            height: 300px;
+            display: block;
+            margin: -150px auto;
+        }
+        .heading{
+            text-align: center;
+            margin-top: 150px;
+        }
+        .description{
+            text-align: center;
+        }
+        .price{
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            width: 200px;
+            margin: 0 auto;
+            margin-top: -20px;
+        }
+        .quantity{
+            font-size: 20px;
+        }
+        .bottom{
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            width: 300px;
+            margin: 10px auto;
+        }
+        .btn{
+            padding: 10px;
+            border: none;
+            background-color: #ffae02;
+            border-radius: 50px;
+            height: 40px;
+            width: 150px;
+            color: white;
+            font-weight: bold;
+            box-shadow: 5px 5px 10px 1px rgb(58, 57, 57);
+        }
+        .q-content{
+            margin: 0 10px;
+            font-size: 25px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
 </head>
-<body>
+<body style="background-color:  #f2f2f2;">
     <div class="container">
-        
+        <img src="product.png" class="img">
+        <h1 class="heading">Orange Juice</h1>
+        <p class="description">
+            The cold pressed valencia juice is the perfect drink at work,while hitting the gym or just to stay fresh!!!
+        </p>
+        <div class="price">
+            <p id="quantityCalculate">1 X 249</p>
+            <h1 id="total">₹249</h1>
+        </div>
+        <div class="bottom">
+            <div class="quantity">
+                <span class="decrease q-content" onclick="dec()">-</span>
+                <span class="number q-content" id="quantityNo">1</span>
+                <span class="increase q-content" onclick="inc()">+</span>
+            </div>
+            <button class="btn">ADD TO CART</button>
+        </div>
     </div>
+
+    <script>
+
+        const quantityNo=document.getElementById('quantityNo');
+        const quantityCalculate=document.getElementById('quantityCalculate');
+        const total=document.getElementById('total');
+        function inc(){
+            let quantity=parseInt(quantityNo.innerText);
+            if (quantity<10){
+                quantityNo.innerText=++quantity;
+            }
+            else{
+                alert("You can't buy more than 10 items");
+            }
+
+            quantityCalculate.innerText=`${quantity} X 249`;
+            total.innerText=`₹${quantity*249}`;
+        }
+
+        function dec(){
+            let quantity=parseInt(quantityNo.innerText);
+            if (quantity>1){
+                quantityNo.innerText=--quantity;
+            }
+            else{
+                alert("You have to buy atleast 1 item");
+            }
+
+            quantityCalculate.innerText=`${quantity} X 249`;
+            total.innerText=`₹${quantity*249}`;
+            
+        }
+    </script>
 </body>
 </html>
